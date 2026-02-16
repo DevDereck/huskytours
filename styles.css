@@ -196,14 +196,14 @@ img {
   min-height: clamp(520px, 88vh, 760px);
   display: grid;
   align-items: center;
-  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80")
+  background: url("assets/hero.jpg")
     center / cover no-repeat;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(7, 72, 130, 0.52);
+  background-color: rgba(0, 0, 0, 0.52);
 }
 
 .hero-content {

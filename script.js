@@ -1,0 +1,143 @@
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.nav');
+const navLinks = document.querySelectorAll('.nav a');
+const langButtons = document.querySelectorAll('.lang-btn');
+const translatableElements = document.querySelectorAll('[data-es][data-en]');
+const revealElements = document.querySelectorAll('.reveal');
+const parallaxSection = document.querySelector('.parallax');
+
+const STORAGE_KEY = 'huskytours-language';
+
+function setMenuOpenState(isOpen) {
+  if (!menuToggle || !nav) return;
+
+  nav.classList.toggle('is-open', isOpen);
+  menuToggle.classList.toggle('is-open', isOpen);
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+}
+
+function closeMenu() {
+  setMenuOpenState(false);
+}
+
+function toggleMenu() {
+  if (!menuToggle) return;
+  const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+  setMenuOpenState(!isExpanded);
+}
+
+function getInitialLanguage() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved === 'es' || saved === 'en') return saved;
+
+  const browserLang = navigator.language?.toLowerCase() || 'es';
+  return browserLang.startsWith('en') ? 'en' : 'es';
+}
+
+function setLanguage(lang) {
+  const normalizedLang = lang === 'en' ? 'en' : 'es';
+
+  document.documentElement.lang = normalizedLang;
+  localStorage.setItem(STORAGE_KEY, normalizedLang);
+
+  translatableElements.forEach((element) => {
+    const translatedText = element.dataset[normalizedLang];
+    if (translatedText) {
+      element.textContent = translatedText;
+    }
+  });
+
+  langButtons.forEach((button) => {
+    const isActive = button.dataset.lang === normalizedLang;
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
+  });
+
+  if (menuToggle) {
+    menuToggle.setAttribute(
+      'aria-label',
+      normalizedLang === 'en' ? 'Open menu' : 'Abrir menú'
+    );
+  }
+}
+
+function setupRevealAnimations() {
+  if (!('IntersectionObserver' in window)) {
+    revealElements.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px',
+    }
+  );
+
+  revealElements.forEach((element) => observer.observe(element));
+}
+
+function setupParallax() {
+  if (!parallaxSection) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) return;
+
+  const updateParallax = () => {
+    const rect = parallaxSection.getBoundingClientRect();
+    const viewportCenter = window.innerHeight / 2;
+    const sectionCenter = rect.top + rect.height / 2;
+    const distance = sectionCenter - viewportCenter;
+    const offset = Math.max(-35, Math.min(35, -distance * 0.12));
+
+    parallaxSection.style.setProperty('--parallax-offset', `${offset}px`);
+  };
+
+  updateParallax();
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  window.addEventListener('resize', updateParallax);
+}
+
+if (menuToggle) {
+  menuToggle.addEventListener('click', toggleMenu);
+}
+
+navLinks.forEach((link) => {
+  link.addEventListener('click', closeMenu);
+});
+
+document.addEventListener('click', (event) => {
+  if (!nav || !menuToggle) return;
+
+  const clickedInsideNav = nav.contains(event.target);
+  const clickedToggle = menuToggle.contains(event.target);
+
+  if (!clickedInsideNav && !clickedToggle) {
+    closeMenu();
+  }
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeMenu();
+  }
+});
+
+langButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const lang = button.dataset.lang;
+    setLanguage(lang);
+  });
+});
+
+setLanguage(getInitialLanguage());
+setupRevealAnimations();
+setupParallax();
