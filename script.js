@@ -4,7 +4,7 @@ const navLinks = document.querySelectorAll('.nav a');
 const langButtons = document.querySelectorAll('.lang-btn');
 const translatableElements = document.querySelectorAll('[data-es][data-en]');
 const revealElements = document.querySelectorAll('.reveal');
-const parallaxSection = document.querySelector('.parallax');
+const parallaxItems = document.querySelectorAll('.parallax-item');
 
 const STORAGE_KEY = 'huskytours-language';
 
@@ -86,19 +86,22 @@ function setupRevealAnimations() {
 }
 
 function setupParallax() {
-  if (!parallaxSection) return;
+  if (!parallaxItems.length) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reducedMotion) return;
 
   const updateParallax = () => {
-    const rect = parallaxSection.getBoundingClientRect();
     const viewportCenter = window.innerHeight / 2;
-    const sectionCenter = rect.top + rect.height / 2;
-    const distance = sectionCenter - viewportCenter;
-    const offset = Math.max(-35, Math.min(35, -distance * 0.12));
 
-    parallaxSection.style.setProperty('--parallax-offset', `${offset}px`);
+    parallaxItems.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const sectionCenter = rect.top + rect.height / 2;
+      const distance = sectionCenter - viewportCenter;
+      const offset = Math.max(-35, Math.min(35, -distance * 0.12));
+
+      item.style.setProperty('--parallax-offset', `${offset}px`);
+    });
   };
 
   updateParallax();
