@@ -374,18 +374,51 @@
         </div>
       </section>
 
-      <section class="cta" id="contact">
-        <div class="container cta-wrap reveal">
-          <h2 data-es="Planea tu próxima aventura hoy" data-en="Plan your next adventure today">
-            Planea tu próxima aventura hoy
-          </h2>
-          <p
-            data-es="Escríbenos y recibe una propuesta personalizada de tours y transporte en minutos."
-            data-en="Message us and receive a personalized tour and transportation proposal in minutes."
-          >
-            Escríbenos y recibe una propuesta personalizada de tours y transporte en minutos.
-          </p>
-          <a class="btn btn-primary" href="mailto:reservas@huskytours.com">reservas@huskytours.com</a>
+      <section class="contact" id="contact">
+        <div class="container contact-wrap">
+          <div class="contact-panel reveal">
+            <p class="contact-label" data-es="Contacto directo" data-en="Direct contact">Contacto directo</p>
+            <h2 data-es="Hablemos de tu próximo viaje" data-en="Let’s plan your next trip">
+              Hablemos de tu próximo viaje
+            </h2>
+            <p class="contact-email">reservas@huskytours.com</p>
+            <a
+              class="contact-whatsapp"
+              href="https://wa.me/50687981685"
+              target="_blank"
+              rel="noopener"
+              data-es="Escribir por WhatsApp"
+              data-en="Chat on WhatsApp"
+            >
+              Escribir por WhatsApp
+            </a>
+            <img src="assets/logo.png" alt="Husky Tours Costa Rica" class="contact-logo" />
+          </div>
+          <div class="contact-form-card reveal">
+            <form action="https://formsubmit.co/reservas@huskytours.com" method="POST" class="contact-form">
+              <input type="hidden" name="_subject" value="Nueva consulta Husky Tours" />
+              <input type="hidden" name="_captcha" value="false" />
+              <label class="contact-field">
+                <span data-es="Nombre" data-en="Name">Nombre</span>
+                <input type="text" name="name" placeholder="Ingresa tu nombre" required />
+              </label>
+              <label class="contact-field">
+                <span data-es="Telefono" data-en="Phone">Telefono</span>
+                <input type="tel" name="phone" placeholder="Ingresa tu numero" required />
+              </label>
+              <label class="contact-field">
+                <span data-es="Correo" data-en="Email">Correo</span>
+                <input type="email" name="email" placeholder="Ingresa tu correo" required />
+              </label>
+              <label class="contact-field">
+                <span data-es="Nota adicional" data-en="Additional note">Nota adicional</span>
+                <textarea name="message" rows="4" placeholder="Cuéntanos que necesitas" required></textarea>
+              </label>
+              <button class="contact-submit" type="submit" data-es="Enviar solicitud" data-en="Send request">
+                Enviar solicitud
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </main>
