@@ -5,6 +5,7 @@ const langButtons = document.querySelectorAll('.lang-btn');
 const translatableElements = document.querySelectorAll('[data-es][data-en]');
 const revealElements = document.querySelectorAll('.reveal');
 const parallaxItems = document.querySelectorAll('.parallax-item');
+const counterElements = document.querySelectorAll('[data-count]');
 
 const STORAGE_KEY = 'huskytours-language';
 
@@ -59,6 +60,75 @@ function setLanguage(lang) {
       normalizedLang === 'en' ? 'Open menu' : 'Abrir menú'
     );
   }
+
+  if (counterElements.length) {
+    counterElements.forEach((element) => {
+      if (element.dataset.animated === 'true') {
+        renderCounterFinal(element);
+      }
+    });
+  }
+}
+
+function formatCount(value) {
+  const locale = document.documentElement.lang === 'en' ? 'en-US' : 'es-CR';
+  return new Intl.NumberFormat(locale).format(value);
+}
+
+function renderCounterFinal(element) {
+  const target = Number(element.dataset.count || 0);
+  const suffix = element.dataset.suffix || '';
+  element.textContent = `${formatCount(target)}${suffix}`;
+}
+
+function setupCounters() {
+  if (!counterElements.length) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    counterElements.forEach((element) => {
+      renderCounterFinal(element);
+      element.dataset.animated = 'true';
+    });
+    return;
+  }
+
+  const animateCounter = (element) => {
+    if (element.dataset.animated === 'true') return;
+    const target = Number(element.dataset.count || 0);
+    const suffix = element.dataset.suffix || '';
+    const duration = 1200;
+    const start = performance.now();
+
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(target * eased);
+      element.textContent = `${formatCount(current)}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        element.dataset.animated = 'true';
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  counterElements.forEach((element) => observer.observe(element));
 }
 
 function setupRevealAnimations() {
@@ -144,3 +214,4 @@ langButtons.forEach((button) => {
 setLanguage(getInitialLanguage());
 setupRevealAnimations();
 setupParallax();
+setupCounters();
