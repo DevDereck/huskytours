@@ -933,6 +933,14 @@ img {
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
   font-family: "Poppins", sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: #93be19;
+  box-shadow: 0 0 0 3px rgba(147, 190, 25, 0.25);
 }
 
 .contact-field input::placeholder,
