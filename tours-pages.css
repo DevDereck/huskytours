@@ -1,0 +1,245 @@
+:root {
+  --color-bg: #f5faed;
+  --color-surface: #ffffff;
+  --color-text: #22310f;
+  --color-muted: #4a5c33;
+  --color-primary: #93be19;
+  --color-primary-strong: #415a0e;
+  --color-secondary: #2ca6c7;
+  --color-accent: #074882;
+  --shadow-soft: 0 10px 30px rgba(7, 72, 130, 0.18);
+  --shadow-card: 0 16px 32px rgba(7, 72, 130, 0.14);
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --container: 1160px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(44, 166, 199, 0.14), transparent 35%),
+    radial-gradient(circle at 90% 0%, rgba(147, 190, 25, 0.2), transparent 28%),
+    var(--color-bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-wrap {
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+  padding: 1.2rem 0 3rem;
+}
+
+.page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.62rem 0.95rem;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--color-accent);
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+
+.back-link:hover {
+  transform: translateY(-1px);
+}
+
+.brand-mini {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.hero-band {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(7, 72, 130, 0.95), rgba(44, 166, 199, 0.85));
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-bg, url("assets/hero.jpg")) center / cover no-repeat;
+  opacity: 0.22;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  line-height: 1.15;
+}
+
+.hero-subtitle {
+  margin: 0.75rem 0 0;
+  max-width: 70ch;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.stats {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.stat-chip {
+  padding: 0.4rem 0.68rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.tour-card-premium {
+  position: relative;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  background: var(--color-surface);
+  border: 1px solid rgba(7, 72, 130, 0.1);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tour-card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 36px rgba(7, 72, 130, 0.2);
+}
+
+.tour-card-premium::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  border-radius: 16px 16px 0 0;
+  background: var(--card-accent, linear-gradient(90deg, #2ca6c7, #93be19));
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.card-badge {
+  flex-shrink: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.28rem 0.48rem;
+  border-radius: 8px;
+  color: var(--color-accent);
+  background: rgba(44, 166, 199, 0.18);
+}
+
+.card-text {
+  margin: 0.65rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.93rem;
+}
+
+.card-points {
+  margin: 0.7rem 0 0;
+  padding-left: 1rem;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.card-points li + li {
+  margin-top: 0.3rem;
+}
+
+.card-footer {
+  margin-top: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.48rem 0.86rem;
+  color: #fff;
+  font-weight: 600;
+  background: var(--color-primary);
+  border: 1px solid transparent;
+}
+
+.card-cta:hover {
+  background: var(--color-primary-strong);
+}
+
+.category-aventura {
+  --card-accent: linear-gradient(90deg, #074882, #2ca6c7);
+}
+
+.category-naturaleza {
+  --card-accent: linear-gradient(90deg, #93be19, #2ca6c7);
+}
+
+.category-cultura {
+  --card-accent: linear-gradient(90deg, #2ca6c7, #074882);
+}
+
+@media (max-width: 720px) {
+  .hero-band {
+    padding: 1.35rem;
+  }
+
+  .page-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
