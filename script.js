@@ -242,5 +242,7 @@ if (formStatus) {
       ? 'We could not send your request. Please try again or contact us by WhatsApp.'
       : 'No se pudo enviar tu solicitud. Inténtalo de nuevo o contáctanos por WhatsApp.';
     formStatus.classList.add('is-error');
+  } else {
+    formStatus.textContent = '';
   }
 }
