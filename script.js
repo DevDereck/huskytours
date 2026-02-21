@@ -1,5 +1,6 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
+const homeLink = document.querySelector('#home-link');
 const navLinks = document.querySelectorAll('.nav a');
 const langButtons = document.querySelectorAll('.lang-btn');
 const translatableElements = document.querySelectorAll('[data-es][data-en]');
@@ -181,6 +182,14 @@ function setupParallax() {
 
 if (menuToggle) {
   menuToggle.addEventListener('click', toggleMenu);
+}
+
+if (homeLink) {
+  homeLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    closeMenu();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
 
 navLinks.forEach((link) => {
