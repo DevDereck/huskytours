@@ -1121,6 +1121,20 @@ img {
     grid-template-columns: 1.1fr 0.9fr;
   }
 
+  #form-status {
+    margin: 0.85rem 0 0;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  #form-status.is-ok {
+    color: #2a6e06;
+  }
+
+  #form-status.is-error {
+    color: #b3261e;
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
     align-items: stretch;

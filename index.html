@@ -401,11 +401,8 @@
             <img src="assets/logo.png" alt="Husky Tours Costa Rica" class="contact-logo" />
           </div>
           <div class="contact-form-card reveal">
-            <form action="https://formsubmit.co/reservas@huskytourscr.com" method="POST" class="contact-form">
-              <input type="hidden" name="_subject" value="Nueva consulta Husky Tours" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_next" value="https://huskytourscr.com/?sent=ok#contact" />
+            <form action="contact.php" method="POST" class="contact-form">
+              <input type="text" name="company" tabindex="-1" autocomplete="off" style="display: none;" />
               <label class="contact-field">
                 <span data-es="Nombre" data-en="Name">Nombre</span>
                 <input type="text" name="name" placeholder="Ingresa tu nombre" required />
@@ -426,6 +423,7 @@
                 Enviar solicitud
               </button>
             </form>
+            <p id="form-status" aria-live="polite"></p>
           </div>
         </div>
       </section>

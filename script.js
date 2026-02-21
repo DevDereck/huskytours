@@ -224,3 +224,23 @@ setLanguage(getInitialLanguage());
 setupRevealAnimations();
 setupParallax();
 setupCounters();
+
+const formStatus = document.querySelector('#form-status');
+if (formStatus) {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get('sent');
+
+  if (status === 'ok') {
+    const isEnglish = document.documentElement.lang === 'en';
+    formStatus.textContent = isEnglish
+      ? 'Your request was sent successfully. We will contact you soon.'
+      : 'Tu solicitud se envió correctamente. Te contactaremos pronto.';
+    formStatus.classList.add('is-ok');
+  } else if (status === 'error') {
+    const isEnglish = document.documentElement.lang === 'en';
+    formStatus.textContent = isEnglish
+      ? 'We could not send your request. Please try again or contact us by WhatsApp.'
+      : 'No se pudo enviar tu solicitud. Inténtalo de nuevo o contáctanos por WhatsApp.';
+    formStatus.classList.add('is-error');
+  }
+}
