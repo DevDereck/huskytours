@@ -18,127 +18,211 @@
       <div class="page-top">
         <a class="back-link" href="index.html#tours">← Volver al inicio</a>
         <span class="brand-mini">Husky Tours · Aventura</span>
+        <div class="lang-switcher">
+          <button class="lang-btn is-active" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
       </div>
 
-      <section class="hero-band" style="--hero-bg: url('assets/aventura-tour-section.jpg')">
+      <section class="hero-band" style="--hero-bg: url('assets/aventura-tour-section.jpg'); --hero-solid: #074882;">
         <div class="hero-content">
-          <h1 class="hero-title">Tours de Aventura</h1>
-          <p class="hero-subtitle">
+          <h1 class="hero-title" data-es="Tours de Aventura" data-en="Adventure Tours">Tours de Aventura</h1>
+          <p class="hero-subtitle" data-es="Selección de experiencias de alta energía: canopy, volcanes activos, caminatas intensas y rutas con adrenalina." data-en="Selection of high-energy experiences: canopy, active volcanoes, intense hikes and adrenaline-filled routes.">
             Selección de experiencias de alta energía: canopy, volcanes activos, caminatas intensas y rutas con adrenalina.
           </p>
           <div class="stats">
-            <span class="stat-chip">Canopy y puentes</span>
-            <span class="stat-chip">Volcanes activos</span>
-            <span class="stat-chip">Full day y multi-day</span>
+            <span class="stat-chip" data-es="Canopy y puentes" data-en="Canopy and bridges">Canopy y puentes</span>
+            <span class="stat-chip" data-es="Volcanes activos" data-en="Active volcanoes">Volcanes activos</span>
+            <span class="stat-chip" data-es="Día completo y multi-día" data-en="Full day and multi-day">Día completo y multi-día</span>
           </div>
         </div>
       </section>
 
       <section class="cards-grid">
-        <article class="tour-card-premium category-aventura">
-          <div class="card-head">
-            <h2 class="card-title">Monteverde Cloud Forest in Selvatura Park</h2>
-            <span class="card-badge">Aventura</span>
+        <article class="tour-card-premium category-aventura" data-tour-id="monteverde-cloud-forest">
+          <div class="card-image-wrap">
+            <img src="assets/aventura-tour-section.jpg" alt="Monteverde Cloud Forest" loading="lazy" />
           </div>
-          <p class="card-text">Tirolesa, puentes colgantes y caminata guiada en bosque nuboso con vistas desde las copas.</p>
+          <div class="card-head">
+            <h2 class="card-title" data-es="Monteverde Cloud Forest en Selvatura Park" data-en="Monteverde Cloud Forest in Selvatura Park">Monteverde Cloud Forest en Selvatura Park</h2>
+            <span class="card-badge" data-es="Aventura" data-en="Adventure">Aventura</span>
+          </div>
+          <p class="card-text" data-es="Tirolesa, puentes colgantes y caminata guiada en bosque nuboso con vistas desde las copas." data-en="Zipline, hanging bridges and guided hike in the cloud forest with treetop views.">
+            Tirolesa, puentes colgantes y caminata guiada en bosque nuboso con vistas desde las copas.
+          </p>
           <ul class="card-points">
-            <li>Canopy y puentes colgantes</li>
-            <li>Guía naturalista experto</li>
+            <li data-es="Canopy y puentes colgantes" data-en="Canopy and hanging bridges">Canopy y puentes colgantes</li>
+            <li data-es="Guía naturalista experto" data-en="Expert naturalist guide">Guía naturalista experto</li>
+            <li data-es="3-4 horas de duración" data-en="3-4 hours duration">3-4 horas de duración</li>
           </ul>
-          <div class="card-footer"><span class="tag">Bosque nuboso</span><a class="card-cta" href="index.html#contact">Reservar</a></div>
+          <div class="card-footer">
+            <span class="tag" data-es="Bosque nuboso" data-en="Cloud forest">Bosque nuboso</span>
+            <a href="tour-monteverde-cloud-forest.html" class="card-cta" data-es="Ver detalles" data-en="View details">Ver detalles</a>
+          </div>
         </article>
 
-        <article class="tour-card-premium category-aventura">
-          <div class="card-head">
-            <h2 class="card-title">Parque de Aventura Vista los Sueños</h2>
-            <span class="card-badge">Aventura</span>
+        <article class="tour-card-premium category-aventura" data-tour-id="vista-los-suenos">
+          <div class="card-image-wrap">
+            <img src="assets/aventura-tour-section.jpg" alt="Parque Vista los Sueños" loading="lazy" />
           </div>
-          <p class="card-text">Combina cuatrimoto, canopy, bicicleta o surf en el Pacífico Central con rutas llenas de emoción.</p>
+          <div class="card-head">
+            <h2 class="card-title" data-es="Parque de Aventura Vista los Sueños" data-en="Vista los Sueños Adventure Park">Parque de Aventura Vista los Sueños</h2>
+            <span class="card-badge" data-es="Aventura" data-en="Adventure">Aventura</span>
+          </div>
+          <p class="card-text" data-es="Combina cuatrimoto, canopy, bicicleta o surf en el Pacífico Central con rutas llenas de emoción." data-en="Combine ATV, canopy, bike or surf on the Central Pacific with thrilling routes.">
+            Combina cuatrimoto, canopy, bicicleta o surf en el Pacífico Central con rutas llenas de emoción.
+          </p>
           <ul class="card-points">
-            <li>Opciones combinables</li>
-            <li>Ideal para grupos activos</li>
+            <li data-es="Opciones combinables" data-en="Combinable options">Opciones combinables</li>
+            <li data-es="Ideal para grupos activos" data-en="Ideal for active groups">Ideal para grupos activos</li>
+            <li data-es="4-6 horas de duración" data-en="4-6 hours duration">4-6 horas de duración</li>
           </ul>
-          <div class="card-footer"><span class="tag">Pacífico Central</span><a class="card-cta" href="index.html#contact">Reservar</a></div>
+          <div class="card-footer">
+            <span class="tag" data-es="Pacífico Central" data-en="Central Pacific">Pacífico Central</span>
+            <a href="tour-vista-los-suenos.html" class="card-cta" data-es="Ver detalles" data-en="View details">Ver detalles</a>
+          </div>
         </article>
 
-        <article class="tour-card-premium category-aventura">
-          <div class="card-head">
-            <h2 class="card-title">Rincón de la Vieja + Catarata Oropéndola</h2>
-            <span class="card-badge">Full day</span>
+        <article class="tour-card-premium category-aventura" data-tour-id="rincon-vieja">
+          <div class="card-image-wrap">
+            <img src="assets/aventura-tour-section.jpg" alt="Rincón de la Vieja" loading="lazy" />
+            <span class="difficulty-badge" data-es="Moderado" data-en="Moderate">Moderado</span>
           </div>
-          <p class="card-text">Senderismo moderado entre fumarolas, lodo volcánico, fauna silvestre y baño en catarata.</p>
+          <div class="card-head">
+            <h2 class="card-title" data-es="Rincón de la Vieja + Catarata Oropéndola" data-en="Rincón de la Vieja + Oropéndola Waterfall">Rincón de la Vieja + Catarata Oropéndola</h2>
+            <span class="card-badge" data-es="Día completo" data-en="Full day">Día completo</span>
+          </div>
+          <p class="card-text" data-es="Senderismo moderado entre fumarolas, lodo volcánico, fauna silvestre y baño en catarata." data-en="Moderate hiking through fumaroles, volcanic mud, wildlife and a waterfall swim.">
+            Senderismo moderado entre fumarolas, lodo volcánico, fauna silvestre y baño en catarata.
+          </p>
           <ul class="card-points">
-            <li>3 horas de caminata</li>
-            <li>Termales y barro volcánico</li>
+            <li data-es="3 horas de caminata" data-en="3 hours hiking">3 horas de caminata</li>
+            <li data-es="Termales y barro volcánico" data-en="Hot springs and volcanic mud">Termales y barro volcánico</li>
+            <li data-es="Baño en catarata" data-en="Waterfall swim">Baño en catarata</li>
           </ul>
-          <div class="card-footer"><span class="tag">Guanacaste</span><a class="card-cta" href="index.html#contact">Reservar</a></div>
+          <div class="card-footer">
+            <span class="tag" data-es="Guanacaste" data-en="Guanacaste">Guanacaste</span>
+            <a href="tour-rincon-vieja.html" class="card-cta" data-es="Ver detalles" data-en="View details">Ver detalles</a>
+          </div>
         </article>
 
-        <article class="tour-card-premium category-aventura">
-          <div class="card-head">
-            <h2 class="card-title">Arenal Volcano + Tabacón Resort Full Day</h2>
-            <span class="card-badge">1 día</span>
+        <article class="tour-card-premium category-aventura" data-tour-id="arenal-tabacan">
+          <div class="card-image-wrap">
+            <img src="assets/aventura-tour-section.jpg" alt="Arenal Volcano" loading="lazy" />
+            <span class="difficulty-badge" data-es="Moderado" data-en="Moderate">Moderado</span>
           </div>
-          <p class="card-text">Caminata en zona volcánica, vistas al Lago Arenal y relajación en aguas termales premium.</p>
+          <div class="card-head">
+            <h2 class="card-title" data-es="Volcán Arenal + Tabacón Resort Día Completo" data-en="Arenal Volcano + Tabacón Resort Full Day">Volcán Arenal + Tabacón Resort Día Completo</h2>
+            <span class="card-badge" data-es="1 día" data-en="1 day">1 día</span>
+          </div>
+          <p class="card-text" data-es="Caminata en zona volcánica, vistas al Lago Arenal y relajación en aguas termales premium." data-en="Volcanic hike, Lake Arenal views and relaxation in premium hot springs.">
+            Caminata en zona volcánica, vistas al Lago Arenal y relajación en aguas termales premium.
+          </p>
           <ul class="card-points">
-            <li>Volcán Arenal activo</li>
-            <li>Cena incluida en resort</li>
+            <li data-es="Volcán Arenal activo" data-en="Active Arenal Volcano">Volcán Arenal activo</li>
+            <li data-es="Cena incluida en resort" data-en="Dinner included at resort">Cena incluida en resort</li>
+            <li data-es="Experiencia premium" data-en="Premium experience">Experiencia premium</li>
           </ul>
-          <div class="card-footer"><span class="tag">Arenal</span><a class="card-cta" href="index.html#contact">Reservar</a></div>
+          <div class="card-footer">
+            <span class="tag" data-es="Arenal" data-en="Arenal">Arenal</span>
+            <a href="tour-arenal-tabacan.html" class="card-cta" data-es="Ver detalles" data-en="View details">Ver detalles</a>
+          </div>
         </article>
 
-        <article class="tour-card-premium category-aventura">
-          <div class="card-head">
-            <h2 class="card-title">3 Days Arenal, Tabacón, Monteverde, Manuel Antonio</h2>
-            <span class="card-badge">3 días</span>
+        <article class="tour-card-premium category-aventura" data-tour-id="three-days-circuit">
+          <div class="card-image-wrap">
+            <img src="assets/aventura-tour-section.jpg" alt="3 Days Circuit" loading="lazy" />
+            <span class="difficulty-badge" data-es="Intenso" data-en="Intense">Intenso</span>
           </div>
-          <p class="card-text">Ruta compacta para combinar aventura en montaña, bosque nuboso y costa del Pacífico.</p>
+          <div class="card-head">
+            <h2 class="card-title" data-es="3 Días Arenal, Monteverde, Manuel Antonio" data-en="3 Days Arenal, Monteverde, Manuel Antonio">3 Días Arenal, Monteverde, Manuel Antonio</h2>
+            <span class="card-badge" data-es="3 días" data-en="3 days">3 días</span>
+          </div>
+          <p class="card-text" data-es="Ruta compacta para combinar aventura en montaña, bosque nuboso y costa del Pacífico." data-en="Compact route combining mountain adventure, cloud forest and Pacific coast.">
+            Ruta compacta para combinar aventura en montaña, bosque nuboso y costa del Pacífico.
+          </p>
           <ul class="card-points">
-            <li>Multi-destino icónico</li>
-            <li>Naturaleza + adrenalina</li>
+            <li data-es="Multi-destino icónico" data-en="Iconic multi-destination">Multi-destino icónico</li>
+            <li data-es="Naturaleza y adrenalina" data-en="Nature and adrenaline">Naturaleza y adrenalina</li>
+            <li data-es="Alojamiento incluido" data-en="Accommodation included">Alojamiento incluido</li>
           </ul>
-          <div class="card-footer"><span class="tag">Circuito activo</span><a class="card-cta" href="index.html#contact">Reservar</a></div>
+          <div class="card-footer">
+            <span class="tag" data-es="Circuito activo" data-en="Active circuit">Circuito activo</span>
+            <a href="tour-three-days-circuit.html" class="card-cta" data-es="Ver detalles" data-en="View details">Ver detalles</a>
+          </div>
         </article>
 
-        <article class="tour-card-premium category-aventura">
-          <div class="card-head">
-            <h2 class="card-title">Isla Tortuga en Catamarán</h2>
-            <span class="card-badge">Marino</span>
+        <article class="tour-card-premium category-aventura" data-tour-id="isla-tortuga">
+          <div class="card-image-wrap">
+            <img src="assets/aventura-tour-section.jpg" alt="Isla Tortuga" loading="lazy" />
+            <span class="difficulty-badge" data-es="Fácil" data-en="Easy">Fácil</span>
           </div>
-          <p class="card-text">Navegación premium con snorkel y banana boat en aguas turquesa del Golfo de Nicoya.</p>
+          <div class="card-head">
+            <h2 class="card-title" data-es="Isla Tortuga en Catamarán" data-en="Isla Tortuga Catamaran Tour">Isla Tortuga en Catamarán</h2>
+            <span class="card-badge" data-es="Marino" data-en="Marine">Marino</span>
+          </div>
+          <p class="card-text" data-es="Navegación premium con snorkel y banana boat en aguas turquesa del Golfo de Nicoya." data-en="Premium sailing with snorkel and banana boat in turquoise waters of the Gulf of Nicoya.">
+            Navegación premium con snorkel y banana boat en aguas turquesa del Golfo de Nicoya.
+          </p>
           <ul class="card-points">
-            <li>Playa de arena blanca</li>
-            <li>Actividades acuáticas</li>
+            <li data-es="Playa de arena blanca" data-en="White sand beach">Playa de arena blanca</li>
+            <li data-es="Actividades acuáticas" data-en="Water activities">Actividades acuáticas</li>
+            <li data-es="Almuerzo incluido" data-en="Lunch included">Almuerzo incluido</li>
           </ul>
-          <div class="card-footer"><span class="tag">Pacífico</span><a class="card-cta" href="index.html#contact">Reservar</a></div>
+          <div class="card-footer">
+            <span class="tag" data-es="Pacífico" data-en="Pacific">Pacífico</span>
+            <a href="tour-isla-tortuga.html" class="card-cta" data-es="Ver detalles" data-en="View details">Ver detalles</a>
+          </div>
         </article>
 
-        <article class="tour-card-premium category-aventura">
-          <div class="card-head">
-            <h2 class="card-title">Masaya Granada Nicaragua 3 Days</h2>
-            <span class="card-badge">3 días</span>
+        <article class="tour-card-premium category-aventura" data-tour-id="masaya-granada-3days">
+          <div class="card-image-wrap">
+            <img src="assets/aventura-tour-section.jpg" alt="Masaya Granada" loading="lazy" />
+            <span class="difficulty-badge" data-es="Moderado" data-en="Moderate">Moderado</span>
           </div>
-          <p class="card-text">Cruce fronterizo asistido, volcán activo, miradores y recorrido lacustre en una sola escapada.</p>
+          <div class="card-head">
+            <h2 class="card-title" data-es="Masaya Granada Nicaragua 3 Días" data-en="Masaya Granada Nicaragua 3 Days">Masaya Granada Nicaragua 3 Días</h2>
+            <span class="card-badge" data-es="3 días" data-en="3 days">3 días</span>
+          </div>
+          <p class="card-text" data-es="Cruce fronterizo asistido, volcán activo, miradores y recorrido lacustre en una sola escapada." data-en="Assisted border crossing, active volcano, viewpoints and lake tour in one trip.">
+            Cruce fronterizo asistido, volcán activo, miradores y recorrido lacustre en una sola escapada.
+          </p>
           <ul class="card-points">
-            <li>Volcán Masaya activo</li>
-            <li>Paseo en barco al atardecer</li>
+            <li data-es="Volcán Masaya activo" data-en="Active Masaya Volcano">Volcán Masaya activo</li>
+            <li data-es="Paseo en barco al atardecer" data-en="Sunset boat ride">Paseo en barco al atardecer</li>
+            <li data-es="Cruce fronterizo asistido" data-en="Assisted border crossing">Cruce fronterizo asistido</li>
           </ul>
-          <div class="card-footer"><span class="tag">Internacional</span><a class="card-cta" href="index.html#contact">Reservar</a></div>
+          <div class="card-footer">
+            <span class="tag" data-es="Internacional" data-en="International">Internacional</span>
+            <a href="tour-masaya-granada-3days.html" class="card-cta" data-es="Ver detalles" data-en="View details">Ver detalles</a>
+          </div>
         </article>
 
-        <article class="tour-card-premium category-aventura">
-          <div class="card-head">
-            <h2 class="card-title">Masaya Granada Nicaragua Tour de un Día</h2>
-            <span class="card-badge">1 día</span>
+        <article class="tour-card-premium category-aventura" data-tour-id="masaya-granada-1day">
+          <div class="card-image-wrap">
+            <img src="assets/aventura-tour-section.jpg" alt="Masaya Granada Express" loading="lazy" />
+            <span class="difficulty-badge" data-es="Fácil" data-en="Easy">Fácil</span>
           </div>
-          <p class="card-text">Versión express con mercado artesanal, volcán activo y recorrido por la ciudad colonial de Granada.</p>
+          <div class="card-head">
+            <h2 class="card-title" data-es="Masaya Granada Nicaragua Tour de un Día" data-en="Masaya Granada Nicaragua One Day Tour">Masaya Granada Nicaragua Tour de un Día</h2>
+            <span class="card-badge" data-es="1 día" data-en="1 day">1 día</span>
+          </div>
+          <p class="card-text" data-es="Versión express con mercado artesanal, volcán activo y recorrido por la ciudad colonial de Granada." data-en="Express version with artisan market, active volcano and colonial Granada city tour.">
+            Versión express con mercado artesanal, volcán activo y recorrido por la ciudad colonial de Granada.
+          </p>
           <ul class="card-points">
-            <li>Salida desde Costa Rica</li>
-            <li>Ideal para agenda corta</li>
+            <li data-es="Mercado artesanal" data-en="Artisan market">Mercado artesanal</li>
+            <li data-es="Volcán Masaya activo" data-en="Active Masaya Volcano">Volcán Masaya activo</li>
+            <li data-es="Agenda corta" data-en="Short itinerary">Agenda corta</li>
           </ul>
-          <div class="card-footer"><span class="tag">Escapada rápida</span><a class="card-cta" href="index.html#contact">Reservar</a></div>
+          <div class="card-footer">
+            <span class="tag" data-es="Escapada rápida" data-en="Quick getaway">Escapada rápida</span>
+            <a href="tour-masaya-granada-1day.html" class="card-cta" data-es="Ver detalles" data-en="View details">Ver detalles</a>
+          </div>
         </article>
       </section>
     </div>
+
+    <script src="shared-translation.js"></script>
   </body>
 </html>
