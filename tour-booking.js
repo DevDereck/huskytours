@@ -1,5 +1,5 @@
 // Tour Booking System
-const WHATSAPP_NUMBER = '50687981685';
+const WHATSAPP_NUMBER = '50671318813';
 
 // Tour data with IDs and descriptions
 const tours = {
@@ -38,6 +38,130 @@ const tours = {
 };
 
 let currentTourId = null;
+
+function parseTourPrices() {
+  const cards = document.querySelectorAll('.prices-grid .price-card');
+  const prices = { adult: null, child: null, family: null, groups: [] };
+
+  cards.forEach((card) => {
+    const category = card.querySelector('.price-category')?.textContent.trim() || '';
+    const amountText = card.querySelector('.price-amount')?.textContent || '';
+    const amount = Number(amountText.replace(/[^0-9.]/g, ''));
+    const categoryLower = category.toLowerCase();
+    const range = category.match(/(\d+)\s*(?:-|a|\+)\s*(\d+)?/i);
+    const isPerGroup = (card.querySelector('.price-desc')?.textContent || '').toLowerCase().includes('grupo');
+
+    if (!amount) return;
+    if (categoryLower.includes('niño') || categoryLower.includes('nino') || categoryLower.includes('child')) {
+      prices.child = amount;
+      return;
+    }
+    if (categoryLower.includes('adult') || categoryLower.includes('adulto')) {
+      prices.adult = amount;
+      return;
+    }
+    if (categoryLower.includes('famil')) {
+      prices.family = amount;
+      return;
+    }
+    if (range || categoryLower.includes('grupo') || categoryLower.includes('people') || categoryLower.includes('personas')) {
+      const minimum = range ? Number(range[1]) : 1;
+      const maximum = range && range[2] ? Number(range[2]) : Infinity;
+      prices.groups.push({ minimum, maximum, amount, isPerGroup });
+    }
+  });
+
+  prices.groups.sort((first, second) => first.minimum - second.minimum);
+  return prices;
+}
+
+function getBookingParticipants() {
+  const adults = Math.max(0, parseInt(document.getElementById('bookingAdults')?.value || '0', 10));
+  const children = Math.max(0, parseInt(document.getElementById('bookingChildren')?.value || '0', 10));
+  const legacyPeople = Math.max(1, parseInt(document.getElementById('bookingPeople')?.value || '1', 10));
+
+  if (!document.getElementById('bookingAdults')) {
+    return { adults: legacyPeople, children: 0, total: legacyPeople };
+  }
+
+  return { adults, children, total: adults + children };
+}
+
+function calculateBookingPrice(participants, prices) {
+  if (participants.children > 0 && prices.family) {
+    return {
+      total: participants.total * prices.family,
+      label: `Tarifa familiar (${prices.family} por persona)`
+    };
+  }
+
+  const groupPrice = prices.groups.find((group) => participants.total >= group.minimum && participants.total <= group.maximum);
+  if (groupPrice) {
+    return {
+      total: groupPrice.isPerGroup ? groupPrice.amount : participants.total * groupPrice.amount,
+      label: groupPrice.isPerGroup ? 'Precio del grupo' : `Grupo (${groupPrice.amount} por persona)`
+    };
+  }
+
+  const adultPrice = prices.adult || prices.child || 0;
+  const childPrice = prices.child || adultPrice;
+  return {
+    total: participants.adults * adultPrice + participants.children * childPrice,
+    label: `${participants.adults} adulto(s)${participants.children ? ` + ${participants.children} niño(s)` : ''}`
+  };
+}
+
+function initializeParticipantFields() {
+  const peopleInput = document.getElementById('bookingPeople');
+  if (!peopleInput || document.getElementById('bookingAdults')) return;
+
+  const group = peopleInput.closest('.form-group');
+  const supportsChildren = parseTourPrices().child !== null;
+  const childrenField = supportsChildren ? `
+    <label for="bookingChildren">Niños:</label>
+    <div class="input-spinner">
+      <button type="button" onclick="decrementParticipant('bookingChildren')">−</button>
+      <input type="number" id="bookingChildren" name="children" value="0" min="0" max="20" readonly />
+      <button type="button" onclick="incrementParticipant('bookingChildren')">+</button>
+    </div>` : '';
+
+  group.innerHTML = `
+    <label for="bookingAdults">Adultos:</label>
+    <div class="input-spinner">
+      <button type="button" onclick="decrementParticipant('bookingAdults')">−</button>
+      <input type="number" id="bookingAdults" name="adults" value="1" min="0" max="20" readonly />
+      <button type="button" onclick="incrementParticipant('bookingAdults')">+</button>
+    </div>
+    ${childrenField}
+    <input type="hidden" id="bookingPeople" name="people" value="1" />`;
+
+  const summaryPrice = document.getElementById('summaryPrice');
+  if (summaryPrice && !document.getElementById('summaryBreakdown')) {
+    const summaryItem = document.createElement('div');
+    summaryItem.className = 'summary-item';
+    summaryItem.innerHTML = '<span>Desglose:</span><strong id="summaryBreakdown">-</strong>';
+    summaryPrice.closest('.summary-item').after(summaryItem);
+  }
+}
+
+function incrementParticipant(id) {
+  const input = document.getElementById(id);
+  const participants = getBookingParticipants();
+  if (input && participants.total < 20) {
+    input.value = Number(input.value) + 1;
+    updateBookingSummary();
+  }
+}
+
+function decrementParticipant(id) {
+  const input = document.getElementById(id);
+  if (!input) return;
+  const minimum = id === 'bookingAdults' ? 1 : 0;
+  if (Number(input.value) > minimum) {
+    input.value = Number(input.value) - 1;
+    updateBookingSummary();
+  }
+}
 
 /**
  * Open tour detail modal
@@ -89,6 +213,10 @@ function closeTourDetail() {
  */
 function resetBookingForm() {
   document.getElementById('bookingForm').reset();
+  const adults = document.getElementById('bookingAdults');
+  const children = document.getElementById('bookingChildren');
+  if (adults) adults.value = '1';
+  if (children) children.value = '0';
   document.getElementById('bookingPeople').value = '1';
   document.getElementById('bookingDate').value = new Date().toISOString().split('T')[0];
   document.getElementById('bookingTime').value = '';
@@ -101,6 +229,10 @@ function resetBookingForm() {
  * Increment people counter
  */
 function incrementPeople() {
+  if (document.getElementById('bookingAdults')) {
+    incrementParticipant('bookingAdults');
+    return;
+  }
   const input = document.getElementById('bookingPeople');
   const current = parseInt(input.value, 10);
   if (current < 20) {
@@ -113,6 +245,10 @@ function incrementPeople() {
  * Decrement people counter
  */
 function decrementPeople() {
+  if (document.getElementById('bookingAdults')) {
+    decrementParticipant('bookingAdults');
+    return;
+  }
   const input = document.getElementById('bookingPeople');
   const current = parseInt(input.value, 10);
   if (current > 1) {
@@ -127,7 +263,10 @@ function decrementPeople() {
 function updateBookingSummary() {
   const date = document.getElementById('bookingDate').value;
   const time = document.getElementById('bookingTime').value;
-  const people = document.getElementById('bookingPeople').value;
+  const participants = getBookingParticipants();
+  const prices = parseTourPrices();
+  const bookingPrice = calculateBookingPrice(participants, prices);
+  document.getElementById('bookingPeople').value = participants.total;
 
   // Format date
   if (date) {
@@ -151,7 +290,10 @@ function updateBookingSummary() {
   }
 
   // Update people
-  document.getElementById('summaryPeople').textContent = people;
+  document.getElementById('summaryPeople').textContent = participants.total;
+  document.getElementById('summaryPrice').textContent = '$' + bookingPrice.total.toLocaleString('en-US');
+  const summaryBreakdown = document.getElementById('summaryBreakdown');
+  if (summaryBreakdown) summaryBreakdown.textContent = bookingPrice.label;
 }
 
 /**
@@ -161,7 +303,9 @@ function reserveOnWhatsApp() {
   // Get form values
   const date = document.getElementById('bookingDate').value;
   const time = document.getElementById('bookingTime').value;
-  const people = document.getElementById('bookingPeople').value;
+  const participants = getBookingParticipants();
+  const people = participants.total;
+  const bookingPrice = calculateBookingPrice(participants, parseTourPrices());
   const name = document.getElementById('bookingName').value;
   const phone = document.getElementById('bookingPhone').value;
   const email = document.getElementById('bookingEmail').value;
@@ -197,6 +341,8 @@ function reserveOnWhatsApp() {
 📅 *Fecha:* ${formattedDate}
 🕐 *Hora:* ${time}
 👥 *Personas:* ${people}
+💵 *Precio estimado:* $${bookingPrice.total.toLocaleString('en-US')}
+📋 *Desglose:* ${bookingPrice.label}
 
 *Datos del solicitante:*
 👤 *Nombre:* ${name}
@@ -283,6 +429,7 @@ function showNotification(message, type = 'info') {
  * Update summary when form values change
  */
 document.addEventListener('DOMContentLoaded', () => {
+  initializeParticipantFields();
   const bookingForm = document.getElementById('bookingForm');
   if (bookingForm) {
     bookingForm.addEventListener('change', updateBookingSummary);
