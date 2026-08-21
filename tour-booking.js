@@ -261,12 +261,15 @@ function decrementPeople() {
  * Update booking summary display
  */
 function updateBookingSummary() {
-  const date = document.getElementById('bookingDate').value;
-  const time = document.getElementById('bookingTime').value;
+  const dateInput = document.getElementById('bookingDate');
+  const timeInput = document.getElementById('bookingTime');
+  const date = dateInput ? dateInput.value : '';
+  const time = timeInput ? timeInput.value : '';
   const participants = getBookingParticipants();
   const prices = parseTourPrices();
   const bookingPrice = calculateBookingPrice(participants, prices);
-  document.getElementById('bookingPeople').value = participants.total;
+  const peopleInput = document.getElementById('bookingPeople');
+  if (peopleInput) peopleInput.value = participants.total;
 
   // Format date
   if (date) {
@@ -277,21 +280,27 @@ function updateBookingSummary() {
       month: 'long',
       day: 'numeric'
     });
-    document.getElementById('summaryDate').textContent = formatter.format(dateObj);
+    const summaryDate = document.getElementById('summaryDate');
+    if (summaryDate) summaryDate.textContent = formatter.format(dateObj);
   } else {
-    document.getElementById('summaryDate').textContent = '-';
+    const summaryDate = document.getElementById('summaryDate');
+    if (summaryDate) summaryDate.textContent = '-';
   }
 
   // Format time
   if (time) {
-    document.getElementById('summaryTime').textContent = time;
+    const summaryTime = document.getElementById('summaryTime');
+    if (summaryTime) summaryTime.textContent = time;
   } else {
-    document.getElementById('summaryTime').textContent = '-';
+    const summaryTime = document.getElementById('summaryTime');
+    if (summaryTime) summaryTime.textContent = '-';
   }
 
   // Update people
-  document.getElementById('summaryPeople').textContent = participants.total;
-  document.getElementById('summaryPrice').textContent = '$' + bookingPrice.total.toLocaleString('en-US');
+  const summaryPeople = document.getElementById('summaryPeople');
+  const summaryPrice = document.getElementById('summaryPrice');
+  if (summaryPeople) summaryPeople.textContent = participants.total;
+  if (summaryPrice) summaryPrice.textContent = '$' + bookingPrice.total.toLocaleString('en-US');
   const summaryBreakdown = document.getElementById('summaryBreakdown');
   if (summaryBreakdown) summaryBreakdown.textContent = bookingPrice.label;
 }
