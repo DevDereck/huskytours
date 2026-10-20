@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
     <title>Arenal Volcano + Tabacón Resort | Husky Tours</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,9 +19,13 @@
       <div class="page-top">
         <a class="back-link" href="aventura.html">← Volver a tours</a>
         <span class="brand-mini">Husky Tours · Arenal</span>
+        <div class="lang-switcher">
+          <button class="lang-btn is-active" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
       </div>
 
-      <section class="hero-band" style="--hero-bg: url('assets/aventura-tour-section.jpg'); --hero-solid: #074882;">
+      <section class="hero-band" style="--hero-bg: url('assets/arenal/AR-heroe.webp'); --hero-solid: #074882;">
         <div class="hero-content">
           <h1 class="hero-title">Arenal Volcano + Tabacón Resort Full Day</h1>
           <p class="hero-subtitle">Caminata en zona volcánica, vistas al Lago Arenal y relajación en aguas termales premium.</p>
@@ -34,10 +41,10 @@
         <section class="tour-gallery">
           <h2>Galería</h2>
           <div class="gallery-grid">
-            <img src="assets/aventura-tour-section.jpg" alt="Volcán Arenal" class="gallery-item" />
-            <img src="assets/aventura-tour-section.jpg" alt="Lago Arenal" class="gallery-item" />
-            <img src="assets/aventura-tour-section.jpg" alt="Aguas termales" class="gallery-item" />
-            <img src="assets/aventura-tour-section.jpg" alt="Resort Tabacón" class="gallery-item" />
+            <img src="assets/arenal/AR-volcano.jpg" alt="Volcán Arenal" class="gallery-item" />
+            <img src="assets/arenal/AR- hotSprings.jpg" alt="Aguas termales" class="gallery-item" />
+            <img src="assets/arenal/AR-tabacon.avif" alt="Tabacon" class="gallery-item" />
+            <img src="assets/arenal/AR-LagoArenal.jpg" alt="lago Arenal" class="gallery-item" />
           </div>
         </section>
 
@@ -294,6 +301,7 @@
         document.getElementById('summaryPrice').textContent = '$' + (people * pricePerPerson);
       });
     </script>
+    <script src="tour-page-translations.js"></script>
     <script src="shared-translation.js"></script>
   </body>
 </html>

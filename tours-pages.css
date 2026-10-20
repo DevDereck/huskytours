@@ -70,8 +70,9 @@ a { color: inherit; text-decoration: none; }
 .tour-card-premium:hover .card-title { color: var(--color-primary); }
 .card-badge { flex-shrink: 0; padding: 0.35rem 0.7rem; border-radius: var(--radius-sm); color: #fff; background: var(--color-accent); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
 .card-text { margin: 0.6rem 1.25rem 0; color: var(--color-text-secondary); font-size: 0.9rem; }
-.card-points { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 1.25rem; }
-.point-chip { padding: 0.3rem 0.6rem; border-radius: 999px; color: var(--color-primary); background: #e6f4ef; font-size: 0.72rem; font-weight: 600; }
+.card-points { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 1.25rem; padding: 0; list-style: none; }
+.card-points li { max-width: 100%; overflow-wrap: anywhere; }
+.point-chip, .card-points li { padding: 0.3rem 0.6rem; border-radius: 999px; color: var(--color-primary); background: #e6f4ef; font-size: 0.72rem; font-weight: 600; }
 .card-footer { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: auto; padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--color-border); }
 .card-price { color: var(--color-accent); font-size: 1.2rem; font-weight: 800; }
 .card-link { padding: 0.55rem 0.8rem; border-radius: var(--radius-sm); color: #fff; background: var(--color-primary); font-size: 0.8rem; font-weight: 700; }
@@ -131,8 +132,9 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 480px) {
   .page-wrap { width: min(100% - 1rem, var(--container)); }
-  .page-top { padding-inline: 0.25rem; }
-  .brand-mini { max-width: 9rem; text-align: right; font-size: 0.68rem; }
+  .page-top { gap: 0.4rem; padding-inline: 0.25rem; }
+  .back-link { padding: 0.6rem 0.75rem; font-size: 0.8rem; }
+  .brand-mini { display: none; }
   .hero-band { min-height: 520px; padding-bottom: 2.5rem; }
   .tour-meta { align-items: flex-start; flex-direction: column; gap: 0.45rem; }
   .tour-meta .meta-item { padding: 0; border: 0; }

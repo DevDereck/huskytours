@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
     <meta name="description" content="Tour Rincón de la Vieja - Husky Tours Costa Rica" />
     <title>Rincón de la Vieja + Catarata Oropéndola | Husky Tours</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,6 +20,10 @@
       <div class="page-top">
         <a class="back-link" href="aventura.html">← Volver a tours</a>
         <span class="brand-mini">Husky Tours · Rincón de la Vieja</span>
+        <div class="lang-switcher">
+          <button class="lang-btn is-active" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
       </div>
 
       <section class="hero-band" style="--hero-bg: url('assets/RinconDeLaVieja/RV-Heroe.webp'); --hero-solid: #074882;">
@@ -295,6 +302,7 @@
         document.getElementById('summaryPrice').textContent = '$' + (people * pricePerPerson);
       });
     </script>
+    <script src="tour-page-translations.js"></script>
     <script src="shared-translation.js"></script>
   </body>
 </html>

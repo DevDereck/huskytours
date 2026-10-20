@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
     <title>3 Days Circuit - Husky Tours</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,9 +19,13 @@
       <div class="page-top">
         <a class="back-link" href="aventura.html">← Volver a tours</a>
         <span class="brand-mini">Husky Tours · 3 Días</span>
+        <div class="lang-switcher">
+          <button class="lang-btn is-active" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
       </div>
 
-      <section class="hero-band" style="--hero-bg: url('assets/aventura-tour-section.jpg'); --hero-solid: #074882;">
+      <section class="hero-band" style="--hero-bg: url('assets/circuit/C-heroe.webp'); --hero-solid: #074882;">
         <div class="hero-content">
           <h1 class="hero-title">3 Days Arenal, Tabacón, Monteverde, Manuel Antonio</h1>
           <p class="hero-subtitle">Ruta compacta para combinar aventura en montaña, bosque nuboso y costa del Pacífico.</p>
@@ -34,10 +41,10 @@
         <section class="tour-gallery">
           <h2>Galería</h2>
           <div class="gallery-grid">
-            <img src="assets/aventura-tour-section.jpg" alt="Arenal" class="gallery-item" />
-            <img src="assets/aventura-tour-section.jpg" alt="Monteverde" class="gallery-item" />
-            <img src="assets/aventura-tour-section.jpg" alt="Manuel Antonio" class="gallery-item" />
-            <img src="assets/aventura-tour-section.jpg" alt="Atardecer" class="gallery-item" />
+            <img src="assets/circuit/C-tortuga.webp" alt="Tortuga" class="gallery-item" />
+            <img src="assets/monteverde/MV-PuentesColgantes2.webp" alt="Puentes Colgantes" class="gallery-item" />
+            <img src="assets/arenal/AR-heroe.webp" alt="Arenal" class="gallery-item" />
+            <img src="assets/circuit/C-playa.jpg" alt="Manuel Antonio" class="gallery-item" />
           </div>
         </section>
 
@@ -270,6 +277,7 @@
         document.getElementById('summaryPrice').textContent = '$' + (people * pricePerPerson);
       });
     </script>
+    <script src="tour-page-translations.js"></script>
     <script src="shared-translation.js"></script>
   </body>
 </html>
